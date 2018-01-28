@@ -102,6 +102,21 @@ p {
     font-family: 'Oxygen', sans-serif;
 }
 
+.section_title ul {
+    text-align: left;
+    margin-top: 45px;
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.section_title ul a {
+    text-decoration: none;
+    color: #c10001;
+}
+
 .section_title p a {
     text-decoration: none;
     color: #c10001;
@@ -829,7 +844,7 @@ div.carousel-inner .item img {
 .single_store {
     text-align: center;
     border-left: 1px solid #0F1217;
-    min-height: 50px;
+    min-height: 100px;
     padding-bottom: 15px;
     position: relative;
     -webkit-transition: all 1s;
