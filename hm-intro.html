@@ -87,9 +87,9 @@
                         <ul class="nav navbar-nav navbar-right">
                             <!-- NAV -->
                             <li><a href=index.html>HOME</a> </li>
-                            <li><a href=encyclopedia.html>ENCYCLOPEDIA </a> </li>
+                            <li><a href=encyclopedia.html>ENCYCLOPEDIA</a> </li>
                             <li><a href=index.html#VISUALIZE>VISUALIZE</a></li>
-                            <li><a href=play.html>PLAY </a> </li>
+                            <li><a href=index.html#PLAY>PLAY</a> </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -117,7 +117,7 @@
 ============================== -->
 
 
-    <section class="inner_about_area" id="COMPARE">
+    <section class="inner_about_area" id="Intro">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
@@ -130,91 +130,104 @@
                 </div>
                 
                 <div class="col-md-6">
-                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- PHONE -->
-                            <img src="images/hm1.png" width=465px alt="">
+                    <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                        <img src="images/hm1.png" width=465px alt="">
+                    </div>
+                </div>
+                <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
+                    <div class="inner_about_title">
+                        <img src="images/hm2.png" width=465px alt="">
+                    </div>
+                </div>
+
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="home_text">
+                            <div class="download-btn" style="text-align: center;">
+                                <a class="btn home-btn wow fadeInLeft" href="#fold-change">Fold Changes</a>
+                                <span style="display:inline-block; width: 20px;"></span>
+                                <a class="btn home-btn wow fadeInRight" href="#data-source">Data Source</a>
+                                <span style="display:inline-block; width: 20px;"></span>
+                                <a class="btn home-btn wow fadeInRight" href=heatmaps.html>Dive in!</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- TITLE -->
-                        <div class="inner_about_title">
-                            <img src="images/hm2.png" width=465px alt="">
-                        </div>
-                    </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- End About Us -->
-
-        <section class="apps_screen page" id="fold-change">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
-                        <!-- APPS SCREEN TITLE -->
-                         <div class="section_title">
-                        
-                        <h2>Fold changes</h2>
-                        
-                        </div>
-                        <p>Consider a gene G. The expression of G might be different for a person with cancer a healthy person. The fold change is a measure of this. Fold changes are interpreted as follows:</p>    
-                        <!-- END APPS SCREEN TITLE -->
-
-                        <style type="text/css">
-                            .tg  {border-collapse:collapse;border-spacing:0;}
-                            .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-                            .tg th{font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-                            .tg .tg-yw4l{vertical-align:top}
-                        </style>
-                        <table class="tg">
-                          <tr>
-                            <th class="tg-yw4l">Fold Change for G</th>
-                            <th class="tg-yw4l">Interpretation</th>
-                          </tr>
-                          <tr>
-                            <td class="tg-yw4l">Positive</td>
-                            <td class="tg-yw4l">G’s expression for a sick person is greater<br>than its expression for a healthy person. We say G is overexpressed.</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-yw4l">Zero</td>
-                            <td class="tg-yw4l">G’s expression is the same for a sick<br>person and a healthy person</td>
-                          </tr>
-                          <tr>
-                            <td class="tg-yw4l">Negative</td>
-                            <td class="tg-yw4l">G’s expression for a sick person is less<br>than<br>its expression for a healthy person. We say G is underexpressed.</td>
-                          </tr>
-                        </table>
-
-                        <p>The farther from 0 G’s fold change is, the greater the difference between its expression for a sick person and a healthy person.</p>
-                        <p>If two genes G1 and G2 have fold changes of 3 and 2, then G1 is more overexpressed than G2.</p>
-                        <p>If two genes G1 and G2 have fold changes of -3 and -2, then G1 is more underexpressed than G2.</p>
-                        <p>For these heat maps, it might help to think of each gene as a character that might play different roles for different contexts (different types of cancer). The genes together form a society that functions differently from one context (type of cancer) to the next.</p>
-                    </div>
-
                 </div>
             </div>
         </div>
+    </section>
 
+    <section class="apps_screen page" id="fold-change">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
+                    <div class="section_title">
+                        <h2>Fold Changes</h2>
+
+                        <p>Consider a gene G. The expression of G might be different for a person with cancer a healthy person. The fold change is a measure of this. Fold changes are interpreted as follows:</p>    
+    
+                        
+                        <table class="tg" style="margin:1em auto; vertical-align:top">
+                          <tr>
+                            <th>Fold Change for G</th>
+                            <th>&emsp;</th>
+                            <th>Interpretation</th>
+                          </tr>
+                          <tr>
+                            <td>Positive</td>
+                            <th>&emsp;</th>
+                            <td>G’s expression for a sick person is <b>greater</b> than its expression for a healthy person. We say G is <b>overexpressed</b>.</td>
+                          </tr>
+                          <tr>
+                            <td>Zero</td>
+                            <th>&emsp;</th>
+                            <td>G’s expression is the same for a sick person and a healthy person</td>
+                          </tr>
+                          <tr>
+                            <td>Negative</td>
+                            <th>&emsp;</th>
+                            <td>G’s expression for a sick person is <b>less</b> than its expression for a healthy person. We say G is <b>underexpressed</b>.</td>
+                          </tr>
+                        </table>
+
+                        <p>The farther from 0 G’s fold change is, the greater the difference between its expression for a sick person and a healthy person.
+                        <br>
+                        <br>
+                        If two genes G1 and G2 have fold changes of 3 and 2, then G1 is <b>more overexpressed</b> than G2.
+                        <br>
+                        If two genes G1 and G2 have fold changes of -3 and -2, then G1 is <b>more underexpressed</b> than G2.
+                        <br>
+                        <br>
+                        For these heat maps, it might help to think of each gene as a character that might play different roles for different contexts (different types of cancer). The genes together form a society that functions differently from one context (type of cancer) to the next.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="inner_about_area" id="data-source">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
-                    <!-- APPS SCREEN TITLE -->
                      <div class="section_title">
                         <h2>Data source</h2>                    
+                        <p>The dataset for these heat maps is from the Pan-Cancer Analysis of Whole Genomes (PCAWG). We sourced it from <a href="https://www.ebi.ac.uk">https://www.ebi.ac.uk</a>.</p>
                     </div>
-                        <p>The dataset for these heat maps is from the Pan-Cancer Analysis of Whole Genomes (PCAWG). We sourced it from https://ebi.ac.uk.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="apps_screen page" id="data-source">
+    <section class="apps_screen page" id="dive-in">
         <div class="container">
-            <div class="section_title know-btn text-align:center">
-                <a class="btn btn-primary btn-action wow fadeInRight" href=heatmaps.html>Know more!</a>
+            <div class="row" style="text-align: center;">
+                <div class="col-md-12 col-sm-12">
+                    <div class="home_text">
+                        <div class="download-btn" style="text-align: center;">
+                            <a class="btn btn-primary btn-video wow fadeInRight" href=heatmaps.html>Dive into the heat maps!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
