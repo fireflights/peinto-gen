@@ -2,7 +2,7 @@
 
 
 
-boolean is_3D = false;
+boolean is_3D = true;
 
 String[] diseases, parts, genes;
 float[][] exprs;
@@ -16,13 +16,17 @@ PImage bladder_c, bladder_g, blood_c, blood_g, kidney_c, kidney_g, liver_c, live
 PFont header_font, text_font, text_font_2;
 boolean is_bladder, is_blood, is_kidney, is_liver, is_lung, is_ovary, is_pancreas, is_prostate, is_stomach, is_thyroid, is_uterus;
 
+PGraphics back_buffer;
 BufferedReader reader;
 
 void setup () {
     size(1200, 800, P3D);
     
+    back_buffer = createGraphics( 1200, 800, P3D );
+    
+    
     // LOAD FONTS
-    header_font = createFont("./assets/fonts/Oswald-Regular.ttf", 20);
+    header_font = createFont("./assets/fonts/Oswald-Regular.ttf", 48);
     text_font = createFont("./assets/fonts/Oxygen-Regular.ttf", 30);
     text_font_2 = createFont("./assets/fonts/Oswald-Light.ttf", 30);
     
@@ -97,7 +101,7 @@ void initialize() {
     cam_pos = new float[3];
     cam_pos[0] = 585;
     cam_pos[1] = 400;
-    cam_pos[2] = 1100;
+    cam_pos[2] = 2500;
     cam_up = new float[3];
     cam_up[0] = 0;
     cam_up[1] = 1;
@@ -112,10 +116,12 @@ void draw() {
   background(255);
   apply_filter();
   
+    int col, red, green, blue, selected_i, selected_j;
+    String group_selected;
   if(is_3D) {
     
     box_width = box_length = (width - 400.0) / exprs[0].length;
-    
+    boolean selected = false;
     //initial location
     float init_x = start_pos_x - box_width;
     float cur_z = -(box_width * genes.length)/2 - box_length - 2150;
@@ -123,6 +129,9 @@ void draw() {
     
     stroke(0);
     
+    back_buffer.beginDraw();
+    back_buffer.background(255);
+    back_buffer.pushMatrix();
     pushMatrix();
     // py equiv: cam_pos_new = [sum(x) for x in zip (cam_pos, cam_dir(pitch, yaw))]
     float[] cam_pos_new = new float[3];
@@ -133,6 +142,66 @@ void draw() {
       cam_pos_new[2] = cam_pos[2] + temp_cam_dir[2];
     }
     camera(cam_pos[0], cam_pos[1], cam_pos[2], cam_pos_new[0], cam_pos_new[1], cam_pos_new[2], cam_up[0], cam_up[1], cam_up[2]);
+    back_buffer.camera(cam_pos[0], cam_pos[1], cam_pos[2], cam_pos_new[0], cam_pos_new[1], cam_pos_new[2], cam_up[0], cam_up[1], cam_up[2]);
+    
+    //box dimensions subtracted to correct the initial translations below
+    back_buffer.translate(init_x, height/2, init_z);
+    for(int i = 0; i < genes.length; i++) {
+      float cur_x = init_x;
+      back_buffer.translate(0, 0, box_length);
+      cur_z += box_length;
+      back_buffer.pushMatrix();
+      for(int j = 0; j < exprs[0].length; j++) {
+        back_buffer.translate(box_width, 0, 0);
+        int index = i*exprs[0].length + j;
+        float cur_expr, ratio, a, b, c, k, alpha;
+        if(alphas[j] > 0){
+          cur_expr = exprs[i][j];
+          if(cur_expr >= 0) { //up-regulated genes
+            ratio = cur_expr/max_expr;
+            a = 1;
+            b = (index & 0x0000FF00) >> 8;
+            c = (index & 0x000000FF);
+            alpha = 0;
+            k = -25;
+          }
+          else {
+            ratio = -cur_expr / min_expr; //down-regulated genes
+            a = 2;
+            b = (index & 0x0000FF00) >> 8;
+            c = (index & 0x000000FF);
+            alpha = 1;
+            k = 25;
+          }
+          cur_x += box_width;
+          back_buffer.pushMatrix();
+          box_height = -ratio*500;
+          back_buffer.translate(0, box_height/2 + k, 0);
+          back_buffer.fill(a, b, c, alphas[j]);
+          if (box_height == 0) {
+             box_height = 1;
+          }
+          back_buffer.box(box_width, box_height, box_length);
+          back_buffer.popMatrix();
+        }
+      }
+      back_buffer.popMatrix();
+    }
+    back_buffer.popMatrix();
+    
+    col = back_buffer.get( mouseX, height - mouseY );
+    red = ( col & 0x00FF0000 ) >>> 16;
+    col = col & 0x0000FFFF;
+    green = ( col & 0x0000FF00 ) >>> 8;
+    blue = ( col & 0x000000FF );
+    group_selected = "none";
+    if (red == 1) { group_selected = "up"; }
+    else if (red == 2) { group_selected = "down";}
+    selected_i = int(col/exprs[0].length);
+    selected_j = col % exprs[0].length;
+    
+    back_buffer.endDraw();
+      
     
     //box dimensions subtracted to correct the initial translations below
     translate(init_x, height/2, init_z);
@@ -143,38 +212,88 @@ void draw() {
       pushMatrix();
       for(int j = 0; j < exprs[0].length; j++) {
         translate(box_width, 0, 0);
+        int[] up_color = {193, 0, 1};
+        int[] down_color = {112, 171, 175};
         float cur_expr, ratio, a, b, c, k;
+        
         if(alphas[j] > 0){
           cur_expr = exprs[i][j];
           if(cur_expr >= 0) { //up-regulated genes
             ratio = cur_expr/max_expr;
-            a = (255 - 193) * (1 - ratio) + 193;
-            b = (255 - 0) * (1 - ratio) + 0;
-            c = (255 - 1) * (1 - ratio) + 1;
+            a = (255 - up_color[0]) * (1 - ratio) + up_color[0];
+            b = (255 - up_color[1]) * (1 - ratio) + up_color[1];
+            c = (255 - up_color[2]) * (1 - ratio) + up_color[2];
             k = -25;
           }
           else {
             ratio = -cur_expr / min_expr; //down-regulated genes
-            a = (255 - 112) * (1 + ratio) + 112; //change in opertaion ("1 + ratio") due to the computation "ratio * 500" below (no "if" below)
-            b = (255 - 171) * (1 + ratio) + 171;
-            c = (255 - 175) * (1 + ratio) + 175;
+            a = (255 - down_color[0]) * (1 + ratio) + down_color[0]; //change in opertaion ("1 + ratio") due to the computation "ratio * 500" below (no "if" below)
+            b = (255 - down_color[1]) * (1 + ratio) + down_color[1];
+            c = (255 - down_color[2]) * (1 + ratio) + down_color[2];
             k = 25;
           }
           cur_x += box_width;
           pushMatrix();
           box_height = -ratio*500;
           translate(0, box_height/2 + k, 0);
+          if(i == selected_i && j == selected_j) {
+            stroke(255); 
+            selected = true;
+          }
+          else {
+            stroke(0); 
+          }
           fill(a, b, c, alphas[j]);
           if (box_height == 0) {
              box_height = 1;
           }
           box(box_width, box_height, box_length);
           popMatrix();
+          
         }
       }
+      
       popMatrix();
     }
+    
     popMatrix();
+    if (selected) {
+      
+      hint(DISABLE_DEPTH_TEST);
+      pushMatrix();
+      translate(mouseX, mouseY);
+      fill(255);
+      rect(0, 0, 310, 110);
+      
+      fill(0);
+      String disease = diseases[selected_j];
+      String part = parts[selected_j];
+      String gene_id = genes[selected_j].split("/")[0];
+      String gene_name = genes[selected_j].split("/")[1];
+      float fc = exprs[selected_i][selected_j];
+      
+      //text(disease, 0, 0, 20);
+      
+      textFont(header_font);
+      textSize(16);
+      text("Part: ", 10, 10, 10 );
+      text("Disease: ", 10, 30, 10);
+      text("Gene ID: ", 10, 50, 10 );
+      text("Gene Name: ", 10, 70, 10 );
+      text("Fold Change: ", 10, 90, 10);
+      
+      textFont(text_font_2);
+      textSize(16);
+      text(part, 90, 10, 10);
+      text(disease, 90, 30, 10);
+      text(gene_id, 90, 50, 10);
+      text(gene_name, 90, 70, 10);
+      text(fc, 90, 90, 10);
+      
+      popMatrix(); 
+      
+      hint(ENABLE_DEPTH_TEST);
+    }
   }
   else {
     // box_dimensions
@@ -260,14 +379,15 @@ void draw() {
   fill(0);
   textFont(header_font);
   textSize(20);
-  text("Mode", 10, -20, 10);
-  textFont(text_font);
+  text("Mode", 10, -20, 20);
+  textFont(text_font
+  );
   textSize(18);
   text("2D", 30, 19, 30);
   text("3D", 30, 49, 30);
   
-  //text(mouseX, 60, 10, 30);
-  //text(mouseY, 60, 50, 30);
+  //text(selected_i, 60, 10, 30);
+  //text(selected_j, 60, 50, 30);
   
   noFill();
   translate(188, -34, 0);
@@ -322,22 +442,22 @@ void draw() {
   hint(ENABLE_DEPTH_TEST);
 }
 
-//void mouseScrolled(MouseEvent event) {
-//  if (is_3D) {
-//    float[] front_vec = cam_dir(pitch, yaw);
-//    front_vec[0] *= mouseScroll * 10;
-//    front_vec[1] *= mouseScroll * 10;
-//    front_vec[2] *= mouseScroll * 10;
-//    for(int i = 0; i < 3; i++) {
-//      cam_pos[i] += front_vec[i];
-//    }
-//  }
-//  else {
-//    float cur_zoom = zoom;
-//    zoom += mouseScroll * 0.02;
-//    start_pos_x -= ((mouseX/cur_zoom * zoom) - mouseX) / zoom;
-//  }
-//}
+void mouseScrolled(MouseEvent event) {
+  if (is_3D) {
+    float[] front_vec = cam_dir(pitch, yaw);
+    front_vec[0] *= mouseScroll * 10;
+    front_vec[1] *= mouseScroll * 10;
+    front_vec[2] *= mouseScroll * 10;
+    for(int i = 0; i < 3; i++) {
+      cam_pos[i] += front_vec[i];
+    }
+  }
+  else {
+    float cur_zoom = zoom;
+    zoom += mouseScroll * 0.02;
+    start_pos_x -= ((mouseX/cur_zoom * zoom) - mouseX) / zoom;
+  }
+}
 
 void mouseWheel(MouseEvent event) {
   if(is_3D) {
@@ -530,7 +650,7 @@ float[] cam_dir(float p, float y) {
     return ret;
 }
 void apply_filter() {
-    alphas = new int[16];
+    alphas = new int[11];
     
     blood = blood_g;
     kidney = kidney_g;
@@ -546,47 +666,47 @@ void apply_filter() {
     
     if(is_blood) {
         blood = blood_c;
-        alphas[0] = alphas[1] = alphas[2] = 255;
+        alphas[0] = 255;
     }
     if(is_kidney) {
         kidney = kidney_c;
-        alphas[3] = alphas[4] = 255;
+        alphas[1] = alphas[4] = 255;
     }
     if(is_liver) {
         liver = liver_c;
-        alphas[5] = alphas[6] = 255;
+        alphas[2] = alphas[6] = 255;
     }
     if(is_lung) {
         lung = lung_c;
-        alphas[7] = alphas[8] = 255;
+        alphas[3] = 255;
     }
     if(is_ovary) {
         ovary = ovary_c;
-        alphas[9] = 255;
+        alphas[4] = 255;
     }
     if(is_pancreas) {
         pancreas = pancreas_c;
-        alphas[10] = 255;
+        alphas[5] = 255;
     }
     if(is_prostate) {
         prostate = prostate_c;
-        alphas[11] = 255;
+        alphas[6] = 255;
     }
     if (is_stomach) {
         stomach = stomach_c;
-        alphas[12] = 255;
+        alphas[7] = 255;
     }
     if(is_thyroid) {
         thyroid = thyroid_c;
-        alphas[13] = 255;
+        alphas[8] = 255;
     }
     if(is_bladder){
         bladder = bladder_c;
-        alphas[14] = 255;
+        alphas[9] = 255;
     }
     if(is_uterus){
         uterus = uterus_c;
-        alphas[15] = 255;
+        alphas[10] = 255;
     }
     
     blood.resize(100, 100);
