@@ -88,8 +88,7 @@
                             <!-- NAV -->
                             <li><a href=index.html>HOME</a> </li>
                             <li><a href=encyclopedia.html>ENCYCLOPEDIA </a> </li>
-                            <li><a href="#HOME">VISUALIZE1</a></li>
-                            <li><a href=visualize2.html>VISUALIZE2</a></li>
+                            <li><a href=index.html#VISUALIZE>VISUALIZE</a></li>
                             <li><a href=play.html>PLAY </a> </li>
                         </ul>
                     </div>
@@ -97,6 +96,13 @@
                 </div>
                 <!-- /.container- -->
             </nav>
+			
+			<div class="subheader_image">
+				<a href=index.html><img width="240" height="60.8" src="images/logo.png" alt=""></a>
+			</div>
+			<div class="subheader_text">
+			Heat Maps
+			</div>
 
         </div>
     </section>
@@ -117,162 +123,101 @@
                 <div class="col-md-10 col-md-offset-1">
                     <!-- ABOUT US SECTION TITLE-->
                     <div class="section_title">
-                        <h2>This is what you are made of</h2>
+                        <h2>2D and 3D Heat Maps</h2>
 
-                        <p>Your body is a work of art, composed of collections of cells, tissues, and organs that work together to keep you alive. </p>
+                        <p>These heat maps summarize fold-change data for different cancer types.</p>
                     </div>
                 </div>
+                
+                <div class="col-md-6">
+                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                        <!-- PHONE -->
+                            <img src="images/hm1.png" width=465px alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
+                        <!-- TITLE -->
+                        <div class="inner_about_title">
+                            <img src="images/hm2.png" width=465px alt="">
+                        </div>
+                    </div>
 
- 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
-
-                    <!~~ APPS SCREEN IMAGES ~~>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organism.png" width="30" height="30" title="ORGANISM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/anatomy.png" width="30" height="30" title="ORGAN SYSTEM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organs.png" width="30" height="30" title="ORGANS"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/tissue.png" width="30" height="30" title="TISSUE"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/cell.png" width="30" height="30" title="CELL"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/dna.png" width="30" height="30" title="DNA"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-                            
             </div>
         </div>
     </section>
     <!-- End About Us -->
 
-
-
-
-
-<!-- =========================
-     Start APPS SCREEN SECTION
-============================== -->
-    <section class="apps_screen page" id="ENCYCLOPEDIA">
+        <section class="apps_screen page" id="fold-change">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
                         <!-- APPS SCREEN TITLE -->
                          <div class="section_title">
                         
-                        <h2>Central Dogma</h2>
-                        <p> </p>
-
+                        <h2>Fold changes</h2>
                         
-                    </div>
+                        </div>
+                        <p>Consider a gene G. The expression of G might be different for a person with cancer a healthy person. The fold change is a measure of this. Fold changes are interpreted as follows:</p>    
                         <!-- END APPS SCREEN TITLE -->
-                    </div>
-                </div>
-            </div>
 
-                    <div class="inner_about_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- PHONE -->
-                            <img src="images/rna1.png" width=465px alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- TITLE -->
-                        <div class="inner_about_title">
-                            <p>At the most basic level, everything that you are is coded in your DNA. Think of the DNA as a guidebook of sorts--this is how to build a body, how to paint a masterpiece. The guidebook is an instruction manual, a set of paints and materials to work with, providing and limiting at the same time.</p>
+                        <style type="text/css">
+                            .tg  {border-collapse:collapse;border-spacing:0;}
+                            .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                            .tg th{font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                            .tg .tg-yw4l{vertical-align:top}
+                        </style>
+                        <table class="tg">
+                          <tr>
+                            <th class="tg-yw4l">Fold Change for G</th>
+                            <th class="tg-yw4l">Interpretation</th>
+                          </tr>
+                          <tr>
+                            <td class="tg-yw4l">Positive</td>
+                            <td class="tg-yw4l">G’s expression for a sick person is greater<br>than its expression for a healthy person. We say G is overexpressed.</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-yw4l">Zero</td>
+                            <td class="tg-yw4l">G’s expression is the same for a sick<br>person and a healthy person</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-yw4l">Negative</td>
+                            <td class="tg-yw4l">G’s expression for a sick person is less<br>than<br>its expression for a healthy person. We say G is underexpressed.</td>
+                          </tr>
+                        </table>
 
-                             <p>But although all of your cells have the same guidebook, they will not be reading the same parts. Different collections of articles are read, different segments of DNA are transcribed into RNA, different patterns are traced out onto the canvas, different amounts of paint readied. </p>
+                        <p>The farther from 0 G’s fold change is, the greater the difference between its expression for a sick person and a healthy person.</p>
+                        <p>If two genes G1 and G2 have fold changes of 3 and 2, then G1 is more overexpressed than G2.</p>
+                        <p>If two genes G1 and G2 have fold changes of -3 and -2, then G1 is more underexpressed than G2.</p>
+                        <p>For these heat maps, it might help to think of each gene as a character that might play different roles for different contexts (different types of cancer). The genes together form a society that functions differently from one context (type of cancer) to the next.</p>
+                    </div>
 
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- PHONE -->
-                            <img src="images/rna2.png" width=465px alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- TITLE -->
-                        <div class="inner_about_title">
-                            <p>Finally, RNA is translated into protein--the painting is filled in with different colors, different shades and hues. Your body is built, protein by protein, painting by painting.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="about_phone wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- PHONE -->
-                            <img src="images/rna3.png" width=465px alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6  wow fadeInRight" data-wow-duration="1s" data-wow-delay=".5s">
-                        <!-- TITLE -->
-                        <div class="inner_about_title">
-                           <p>At every stage, there are mistakes and erasure, some parts of the work painted over, regulations of the levels of expression and modifications. The process of creating a body is as complex as the different layers of paint on a masterpiece. 
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
+    </section>
 
-                    <!-- APPS SCREEN IMAGES -->
-                    <div class="item">
-                    <a href="images/screens/iPhone04.png" rel="prettyPhoto[pp_gal]"><img src="images/bladder_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
+    <section class="inner_about_area" id="data-source">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
+                    <!-- APPS SCREEN TITLE -->
+                     <div class="section_title">
+                        <h2>Data source</h2>                    
                     </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone05.png" rel="prettyPhoto[pp_gal]"><img src="images/blood_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone06.png" rel="prettyPhoto[pp_gal]"><img src="images/kidney_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone07.png" rel="prettyPhoto[pp_gal]"><img src="images/liver_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/lung_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/ovary_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/pancreas_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/prostate_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/stomach_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/thyroid_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
-                    <div class="item">
-                        <a href="images/screens/iPhone08.png" rel="prettyPhoto[pp_gal]"><img src="images/uterus_c.jpg" width="60" height="60" alt="APPS SCREEN" /></a>
-                    </div>
+                        <p>The dataset for these heat maps is from the Pan-Cancer Analysis of Whole Genomes (PCAWG). We sourced it from https://ebi.ac.uk.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <!-- ENS APPS SCREEN -->
+    <section class="apps_screen page" id="data-source">
+        <div class="container">
+            <div class="section_title know-btn text-align:center">
+                <a class="btn btn-primary btn-action wow fadeInRight" href=heatmaps.html>Know more!</a>
+            </div>
+        </div>
+    </section>
 
 <!-- =========================
      FOOTER 
@@ -285,7 +230,8 @@
                 <div class="col-md-6">
                     <div class="copy_right_text">
                     <!-- COPYRIGHT TEXT -->
-                        <p>Copyright &copy; Peinto Gen 2017. All Rights Reserved.</p>        
+						<p>List of images used <a href=references.html>here</a></p>
+                        <p>Copyright &copy; Peinto Gen 2018. All Rights Reserved.</p>        
                         <p>A theme by <a href="https://dcrazed.com/">Dcrazed</a></p>
                     </div>
                      

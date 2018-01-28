@@ -20,6 +20,7 @@ URL: http://designscrazed.org/
   11. SECTION CONTACT 
   12. SECTION SUBSCRIBE
   13. SECTION FOOTER 
+  14. Slide show
 
 */
 * {
@@ -150,15 +151,33 @@ p {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .header .section_overlay {
     background-color: rgba(33, 33, 33, .75);
 }
+
 .logo{
     padding-bottom: 50px;
 }
 .home_text{
     text-align: left;
 }
+
+.subheader_image{
+	padding-left: 100px;
+    float: left;
+}
+
+.subheader_text{
+	text-transform: uppercase;
+	padding-right: 100px;
+    text-align: right;
+	color: #eff6ff;
+	font-size: 40px;
+	font-family: 'Oswald', sans-serif;
+}
+
+
 .home-iphone{
     text-align: right;
 }
@@ -192,6 +211,11 @@ p {
 }
 .download-btn {
     margin-top: 90px;
+    margin-bottom: 50px
+}
+
+.know-btn {
+    margin-top: 0px;
     margin-bottom: 50px
 }
 .home-btn,
@@ -570,8 +594,8 @@ div.carousel-inner .item img {
 .btn-action:active,
 .btn-action:focus,
 .btn-action:visited {
-    background: #f39c12;
-    border: 1px solid #f39c12;
+    background: #70abaf;
+    border: 1px solid #70abaf;
     color: #fff;
     border-radius: 3px;
     padding: 15px 35px;
@@ -582,8 +606,8 @@ div.carousel-inner .item img {
     transition: all 1s;
 }
 .btn-action:hover {
-    background: #FF6B80;
-    border-color: #FF6B80;
+    background: #c10001;
+    border-color: #c10001;
 }
 
 /*---------------------------------------
@@ -688,7 +712,7 @@ div.carousel-inner .item img {
 .single_store {
     text-align: center;
     border-left: 1px solid #0F1217;
-    min-height: 230px;
+    min-height: 50px;
     padding-bottom: 15px;
     position: relative;
     -webkit-transition: all 1s;
@@ -1079,4 +1103,95 @@ select:-webkit-autofill {
         transform: scale(1.0);
         -webkit-transform: scale(1.0);
     }
+}
+
+/*---------------------------------------
+   SLIDESHOW              
+-----------------------------------------*/
+
+* {box-sizing: border-box}
+body {font-family: 'Oxygen', sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  font-size: 20px;
+  padding: 8px 12px;
+  position: relative;
+  bottom: -5px;
+  width: 100%;
+  text-align: left;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
 }

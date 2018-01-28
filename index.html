@@ -87,10 +87,9 @@
                         <ul class="nav navbar-nav navbar-right">
                             <!-- NAV -->
                             <li><a href="#HOME">HOME</a> </li>
-                            <li><a href=encyclopedia.html>ENCYCLOPEDIA </a> </li>
-                            <li><a href=visualize1.html>VISUALIZE1</a></li>
-                            <li><a href=visualize2.html>VISUALIZE2</a></li>
-                            <li><a href=play.html>PLAY </a> </li>
+                            <li><a href="#COMPARE">ENCYCLOPEDIA </a> </li>
+                            <li><a href="#VISUALIZE">VISUALIZE</a></li>
+                            <li><a href="#PLAY">PLAY </a> </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -120,9 +119,7 @@
                             <!-- BUTTON -->
                                 <a class="btn home-btn wow fadeInLeft" href="#COMPARE">Know more</a>
                                 <span style="display:inline-block; width: 20px;"></span>
-                                <a class="btn home-btn wow fadeInRight" href="#VISUALIZE1">Visualize1</a>
-                                <span style="display:inline-block; width: 20px;"></span>
-                                <a class="btn home-btn wow fadeInRight" href="#VISUALIZE2">Visualize2</a>
+                                <a class="btn home-btn wow fadeInRight" href="#VISUALIZE">Visualize</a>
                                 <span style="display:inline-block; width: 20px;"></span>
                                 <a class="btn home-btn wow fadeInRight" href="#PLAY">Play (Coming Soon)</a>
                             </div>
@@ -155,46 +152,24 @@
                 <div class="col-md-10 col-md-offset-1">
                     <!-- ABOUT US SECTION TITLE-->
                     <div class="section_title">
+                        <h2>What is PeintoGen?</h2>
+
+                        <p>PeintoGen is a gene expression data visualization website designed to be a supplementary educational tool for students of biology and a tool to introduce interested members of the general public to the field of gene expression analysis. It seeks to provide information in an accessible manner and to modify existing data visualization strategies to make them more approachable and engaging. </p>
+                    </div>
+					
+					<div class="inner_about_title">
                         <h2>Encyclopedia</h2>
 
                         <p>Your body is a work of art, composed of collections of cells, tissues, and organs that work together to keep you alive. </p>
                     </div>
                 </div>
-
-<!-- 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
-
-                    <!~~ APPS SCREEN IMAGES ~~>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organism.png" width="30" height="30" title="ORGANISM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/anatomy.png" width="30" height="30" title="ORGAN SYSTEM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organs.png" width="30" height="30" title="ORGANS"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/tissue.png" width="30" height="30" title="TISSUE"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/cell.png" width="30" height="30" title="CELL"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/dna.png" width="30" height="30" title="DNA"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
- -->
         
-        <div class="download-btn">
-		<!-- BUTTON -->
-			<a class="btn home-btn wow fadeInLeft" href=encyclopedia.html>Know more</a>
-		</div>
-                            
+				<div class="col-md-9">
+				</div>
+				<div class="col-md-3 know-btn">
+					<a class="btn btn-primary btn-action wow fadeInRight" href=encyclopedia.html>Know more!</a>
+				</div>
+                         
             </div>
         </div>
     </section>
@@ -205,119 +180,159 @@
 ============================== -->
 
 
-    <section class="apps_screen page" id="VISUALIZE1">
+    <section class="download page" id="VISUALIZE">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <!-- ABOUT US SECTION TITLE-->
                     <div class="section_title">
-                        <h2>Visualize 1</h2>
+                        <h2>Visualize</h2>
+					</div>
+					
+                    <!-- Slideshow container -->
+					<div class="slideshow-container">
+						<!-- Full-width images with number and caption text -->
+						<div class="mySlides">
+							<img src="images/viz1.png" style="width:50%">
+							<div class="text">Datasets often look like this—a huge bunch of numbers arranged in a matrix. Doesn’t seem to be saying anything understandable, right? This is where data visualization comes in.</div>
+						</div>
 
-                        <p>Your body is a work of art, composed of collections of cells, tissues, and organs that work together to keep you alive. </p>
+						<div class="mySlides">
+							<img src="images/viz2.png" style="width:50%">
+							<div class="text">One commonly used data visualization tool (particularly in gene expression analysis) is the heat map. A heat map assigns different colors to different values in a matrix. As seen above, we can choose to represent positive and negative values with shades of red and turquoise, respectively. The farther from zero a value is, the brighter the color that represents it.</div>
+						</div>
+
+						<div class="mySlides">
+							<img src="images/viz3.png" style="width:50%">
+							<div class="text">Without the numbers, it becomes easy to pinpoint extreme values and compare rows or columns. This aids researchers in interpreting the data, enabling them to make hypotheses and helping them decide what to do next.
+							Data visualization can be used as a preliminary step to know what other computations must be done with the data; or a way to summarize the results of computations already done.</div>
+						</div>
+
+						<!-- Next and previous buttons -->
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a class="next" onclick="plusSlides(1)">&#10095;</a>
+					</div>
+					
+					<!-- The dots/circles -->
+					<div style="text-align:center">
+						<span class="dot" onclick="currentSlide(1)"></span> 
+						<span class="dot" onclick="currentSlide(2)"></span> 
+						<span class="dot" onclick="currentSlide(3)"></span> 
+					</div>
+                </div>
+            </div>
+			                
+			<div class="inner_about_title">
+                <h2>Visualization</h2>
+				<p>In exploring the following visualizations, we would like you to focus on how they are able to summarize data (paint the big picture), not on the identities and actual biological functions of the individual genes.</p>					
+				<p>In your exploration, you will see information like this:</p>
+				<img src="images/gene.png">
+				<img src="images/geneid.png">
+				<p>You are free, of course, to try and understand what each gene is for, but we aren’t putting pressure on you to do so.</p>
+			</div>
+			
+            <div class="available_store">
+            <div class="container  wow bounceInRight" data-wow-duration="1s">
+                <div class="col-md-6">
+                    <div class="available_title">
+                        <h2>Visualizations</h2>
                     </div>
                 </div>
 
-<!-- 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
-
-                    <!~~ APPS SCREEN IMAGES ~~>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organism.png" width="30" height="30" title="ORGANISM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/anatomy.png" width="30" height="30" title="ORGAN SYSTEM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organs.png" width="30" height="30" title="ORGANS"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/tissue.png" width="30" height="30" title="TISSUE"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/cell.png" width="30" height="30" title="CELL"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/dna.png" width="30" height="30" title="DNA"/></a>
+                <!-- DOWNLOADABLE STORE -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <a href=hm-intro.html>
+                            <div class="col-md-4 no_padding">
+                                <div class="single_store">
+                                    <img src="images/hm-btn.png" width="50%">
+                                    <div class="store_inner">
+                                        <h2>Heat Map</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col-md-4 no_padding">
+                            <a href=cn-intro.html>
+                                <div class="single_store">
+                                    <img src="images/cn-btn.png" width="50%">
+                                    <div class="store_inner">
+                                        <h2>Crawl Network</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="available_title">
+                        <h2></h2>
+                    </div>
+                </div>
+
+                <!-- DOWNLOADABLE STORE -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <a href=hm-intro.html>
+                            <div class="col-md-4 no_padding">
+                                <div class="single_store">
+                                    <img src="images/hm-btn.png" width="50%">
+                                    <div class="store_inner">
+                                        <h2>Heat Map</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="col-md-4 no_padding">
+                            <a href=cn-intro.html>
+                                <div class="single_store">
+                                    <img src="images/cn-btn.png" width="50%">
+                                    <div class="store_inner">
+                                        <h2>Crawl Network</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END DOWNLOADABLE STORE -->
             </div>
         </div>
- -->
-        
-        <div class="download-btn">
-		<!-- BUTTON -->
-			<a class="btn home-btn wow fadeInLeft" href=visualize1.html>Know more</a>
-		</div>
-                            
-            </div>
+
+		
+			<div class="col-md-6 right_no_padding wow fadeInLeft" data-wow-duration="1s">
+				<div class="left_single_feature">
+					<h3>Heat Maps</h3>
+					<p>These heat maps summarize fold-change data for different cancer types.</p>
+				</div>
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-3 know-btn">
+					<a class="btn btn-primary btn-action wow fadeInRight" href=hm-intro.html>See Heat Maps</a>
+				</div>
+			</div>
+				
+			<div class="col-md-6 left_no_padding wow fadeInRight" data-wow-duration="1s">
+				<div class="right_single_feature">
+					<h3>Crawl Network</h3>
+					<p>Networks are often used to paint a picture of how things are connected or how they interact. Genes in a network are either activators or inhibitors of other genes</p>
+				</div>
+				<div class="col-md-3 know-btn">
+					<a class="btn btn-primary btn-action wow fadeInRight" href=cn-intro.html>See Crawl</a>
+				</div>
+			</div>
         </div>
     </section>
     <!-- End About Us -->
 
- <!-- =========================
-     START ENCYCLOPEDIA SECTION
-============================== -->
-
-
-    <section class="inner_about_area" id="VISUALIZE2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <!-- ABOUT US SECTION TITLE-->
-                    <div class="section_title">
-                        <h2>Visualize2</h2>
-
-                        <p>Your body is a work of art, composed of collections of cells, tissues, and organs that work together to keep you alive. </p>
-                    </div>
-                </div>
-
-<!-- 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
-
-                    <!~~ APPS SCREEN IMAGES ~~>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organism.png" width="30" height="30" title="ORGANISM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/anatomy.png" width="30" height="30" title="ORGAN SYSTEM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organs.png" width="30" height="30" title="ORGANS"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/tissue.png" width="30" height="30" title="TISSUE"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/cell.png" width="30" height="30" title="CELL"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/dna.png" width="30" height="30" title="DNA"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
- -->
-        
-        <div class="download-btn">
-		<!-- BUTTON -->
-			<a class="btn home-btn wow fadeInLeft" href=visualize2.html>Know more</a>
-		</div>
-                            
-            </div>
-        </div>
-    </section>
-    <!-- End About Us -->
 
 <!-- =========================
      START PLAY SECTION
 ============================== -->
 
 
-    <section class="apps_screen page" id="PLAY">
+    <section class="inner_about_area" id="PLAY">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
@@ -328,40 +343,12 @@
                         <p>Your body is a work of art, composed of collections of cells, tissues, and organs that work together to keep you alive. </p>
                     </div>
                 </div>
-
-<!-- 
-        <div class="screen_slider">
-            <div id="demo" class="wow bounceInRight" data-wow-duration="1s">
-                <div id="owl-demo" class="owl-carousel">
-
-                    <!~~ APPS SCREEN IMAGES ~~>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organism.png" width="30" height="30" title="ORGANISM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/anatomy.png" width="30" height="30" title="ORGAN SYSTEM" /></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/organs.png" width="30" height="30" title="ORGANS"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/tissue.png" width="30" height="30" title="TISSUE"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/cell.png" width="30" height="30" title="CELL"/></a>
-                    </div>
-                    <div class="item">
-                        <a rel="prettyPhoto[pp_gal]"><img src="images/dna.png" width="30" height="30" title="DNA"/></a>
-                    </div>
-                </div>
-            </div>
-        </div>
- -->
-        
-        <div class="download-btn">
-		<!-- BUTTON -->
-			<a class="btn home-btn wow fadeInLeft" href=play.html>Know more</a>
-		</div>
+				
+				<div class="col-md-9">
+				</div>
+				<div class="col-md-3 know-btn">
+					<a class="btn btn-primary btn-action wow fadeInRight" href=play.html>Start!</a>
+				</div>
                             
             </div>
         </div>
@@ -379,7 +366,8 @@
                 <div class="col-md-6">
                     <div class="copy_right_text">
                     <!-- COPYRIGHT TEXT -->
-                        <p>Copyright &copy; Peinto Gen 2017. All Rights Reserved.</p>        
+						<p>List of images used <a href=references.html>here</a></p>
+                        <p>Copyright &copy; Peinto Gen 2018. All Rights Reserved.</p>        
                         <p>A theme by <a href="https://dcrazed.com/">Dcrazed</a></p>
                     </div>
                      
@@ -414,6 +402,8 @@
     <script src="js/waypoints.min.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
     <script src="js/script.js"></script>
+	<script src="js/slideshow.js"></script>
+	
 
 
 </body>
