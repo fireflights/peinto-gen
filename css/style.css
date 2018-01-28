@@ -70,6 +70,28 @@ p {
     margin-left: -30px;
     font-family: 'Oswald', sans-serif;
 }
+
+.section_title h3 {
+    text-transform: uppercase;
+    text-align: left;
+    position: relative;
+    color: #70abaf;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+}
+
+.section_title h4 {
+    text-transform: uppercase;
+    margin-top: 45px;
+    text-align: center;
+    position: relative;
+    color: #70abaf;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+}
+
 .section_title p {
     text-align: left;
     margin-top: 45px;
@@ -110,7 +132,7 @@ p {
         font-family: 'Oxygen', sans-serif;
     }
     .navbar-default .navbar-nav>li>a:hover {
-        color: #f39c12;
+        color: #c10001;
     }
     .navbar-default .navbar-nav>li>a:focus {
         color: #B5B5B5;
@@ -149,7 +171,7 @@ p {
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
     background: transparent;
-    color: #f39c12;
+    color: #c10001;
 }
 .header {
     background: url(../images/home.jpg);
@@ -217,12 +239,14 @@ p {
 }
 .download-btn {
     margin-top: 90px;
-    margin-bottom: 50px
+    margin-bottom: 50px;
 }
 
 .know-btn {
     margin-top: 0px;
-    margin-bottom: 50px
+    margin-bottom: 50px;
+    font-size: 19px;
+    font-family: 'Oswald', sans-serif;
 }
 .home-btn,
 .home-btn:focus,
@@ -283,7 +307,8 @@ tuor:visited {
     background: #F1F1F1;
 }
 .inner_about_area {
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .inner_about_title {
     padding-bottom: 50px;
@@ -366,7 +391,7 @@ tuor:visited {
     font-size: 15px;
 }
 .single_about_area:hover div i {
-    color: #f39c12;
+    color: #c10001;
 }
 .about_phone img {} @media (min-width: 991px) and (max-width: 1200px) {
     .about_phone img {
@@ -401,7 +426,7 @@ tuor:visited {
     bottom: -12px;
     left: 0;
     width: 70px;
-    background: #f39c12;
+    background: #c10001;
     height: 1px;
 }
 .video_title p {
@@ -434,9 +459,9 @@ tuor:visited {
     transition: all 1s;
 }
 .btn-video:hover {
-    background: #f39c12;
+    background: #c10001;
     color: #fff;
-    border: 1px solid #f39c12;
+    border: 1px solid #c10001;
 }
 .video {} .video iframe {
     width: 100%;
@@ -471,7 +496,7 @@ tuor:visited {
     bottom: -8px;
 }
 div.carousel-inner .item img {
-    border: 2px solid #f39c12;
+    border: 2px solid #c10001;
     border-radius: 50%;
     padding: 3px;
 }
@@ -486,7 +511,7 @@ div.carousel-inner .item img {
     padding-top: 50px;
 }
 .testimonial_caption h2 {
-    color: #f39c12;
+    color: #c10001;
     text-transform: uppercase;
     font-weight: 900;
     font-size: 30px;
@@ -654,6 +679,7 @@ div.carousel-inner .item img {
     color: #fff;
     border-radius: 3px;
     padding: 15px 35px;
+    font-size: 19px;
     text-transform: uppercase;
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
@@ -671,7 +697,7 @@ div.carousel-inner .item img {
 
 .apps_screen {
     background: #f1f1f1;
-    padding-bottom: 96px;
+    padding-bottom:30px;
 }
 .screen_slider {
     padding-top: 0px;
@@ -692,7 +718,27 @@ div.carousel-inner .item img {
 .owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span {
     opacity: 1;
-    background: #f39c12;
+    background: #c10001;
+}
+
+.apps_screen h3 {
+    text-transform: uppercase;
+    text-align: left;
+    position: relative;
+    color: #333;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    
+    /*
+    text-align: left;
+    margin-top: 45px;
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
+    */
 }
 
 .apps_screen p {
@@ -751,7 +797,7 @@ div.carousel-inner .item img {
 -----------------------------------------*/
 
 .download {
-    background: #f1f1f1;
+    background: white;
 }
 .download_screen {
     padding-top: 45px;
@@ -940,12 +986,12 @@ div.carousel-inner .item img {
     font-size: 20px;
 }
 .social_icons ul li a:hover {
-    background: #f39c12;
-    border: 1px solid #f39c12;
+    background: #c10001;
+    border: 1px solid #c10001;
     color: #fff
 }
 .error {
-    color: #f39c12;
+    color: #c10001;
     display: block;
     padding-bottom: 15px;
     font-size: 18px
@@ -1022,12 +1068,12 @@ div.carousel-inner .item img {
 .subs-btn:visited {
     width: 200px;
     background: transparent;
-    border: 1px solid #f39c12;
+    border: 1px solid #c10001;
     border-radius: 4px;
     height: 45px;
     margin-left: 0px;
     margin-bottom: 1px;
-    color: #f39c12;
+    color: #c10001;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 17px;
@@ -1065,7 +1111,7 @@ div.carousel-inner .item img {
     background-color: #1A1D22;
     padding-bottom: 65px;
     padding-top: 65px;
-    border-bottom: 3px solid #f39c12;
+    border-bottom: 3px solid #c10001;
 }
 .copyright h2 {
     height: 0px;
@@ -1082,7 +1128,7 @@ div.carousel-inner .item img {
 }
 .copy_right_text p a {
     text-decoration: none;
-    color: #f39c12;
+    color: #c10001;
 }
 .copy_right_text p span {
     font-weight: 300;
@@ -1091,7 +1137,7 @@ div.carousel-inner .item img {
     text-align: right;
 }
 .scroll_top a {
-    background: #f39c12;
+    background: #c10001;
     padding: 25px;
 }
 .scroll_top a i {
