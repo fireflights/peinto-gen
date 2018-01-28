@@ -92,6 +92,16 @@ p {
     font-family: 'Oswald', sans-serif;
 }
 
+.section_title h5 {
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    color: #eff6ff;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+}
+
 .section_title p {
     text-align: left;
     margin-top: 45px;
@@ -843,7 +853,7 @@ div.carousel-inner .item img {
 }
 .single_store {
     text-align: center;
-    border-left: 1px solid #0F1217;
+    /*border-left: 1px solid #0F1217;*/
     min-height: 100px;
     padding-bottom: 15px;
     position: relative;
@@ -864,8 +874,9 @@ div.carousel-inner .item img {
     transition: all 1s;
 }
 .store_inner {
-    position: absolute;
-    bottom: 93px;
+    position: relative;
+    bottom: 10px;
+    /*bottom: 93px;*/
     width: 100%;
     opacity: 0;
     -webkit-transition: all 1s;
@@ -880,7 +891,7 @@ div.carousel-inner .item img {
     font-size: 16px;
 }
 .single_store:hover {
-    background: #121212;
+    background: #2a555e;
 }
 .single_store:hover i {
     opacity: 0;
@@ -893,7 +904,7 @@ div.carousel-inner .item img {
     padding-right: 0px;
 }
 .last {
-    border-right: 1px solid #0F1217;
+    /*border-right: 1px solid #0F1217;*/
 }
 /*---------------------------------------
    SECTION CONTACT              
