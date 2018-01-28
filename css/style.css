@@ -694,6 +694,16 @@ div.carousel-inner .item img {
     opacity: 1;
     background: #f39c12;
 }
+
+.apps_screen p {
+    text-align: left;
+    margin-top: 45px;
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
+}
 /*---------------------------------------
    SECTION FUN FACTS              
 -----------------------------------------*/
