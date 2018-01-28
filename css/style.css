@@ -1284,7 +1284,7 @@ body {font-family: 'Oxygen', sans-serif; margin:0}*/
   margin-top: -22px;
   color: white;
   /*font-weight: bold;*/
-  font-size: 18px;
+  font-size: 28px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
@@ -1296,7 +1296,7 @@ body {font-family: 'Oxygen', sans-serif; margin:0}*/
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.slideshow-container  prev:hover, .mySlides next:hover {
+.slideshow-container  prev:hover, .slideshow-container next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
@@ -1310,8 +1310,8 @@ body {font-family: 'Oxygen', sans-serif; margin:0}*/
   text-align: left;*/
   text-align: left;
     color: #333;
-    font-size: 15px;
-    line-height: 28px;
+    font-size: 58px;
+    line-height: 18px;
     font-weight: 300;
     font-family: 'Oxygen', sans-serif;
 }
@@ -1330,6 +1330,21 @@ body {font-family: 'Oxygen', sans-serif; margin:0}*/
 
 .slideshow-container active, .slideshow-container dot:hover {
   background-color: #717171;
+}
+
+
+.slideshow-container a:prev, .slideshow-container a:next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  /*font-weight: bold;*/
+  font-size: 58px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
 }
 
 /* Fading animation */
