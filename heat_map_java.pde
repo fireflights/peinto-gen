@@ -266,8 +266,8 @@ void draw() {
   text("2D", 30, 19, 30);
   text("3D", 30, 49, 30);
   
-  text(mouseX, 60, 10, 30);
-  text(mouseY, 60, 50, 30);
+  //text(mouseX, 60, 10, 30);
+  //text(mouseY, 60, 50, 30);
   
   noFill();
   translate(188, -34, 0);
