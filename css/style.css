@@ -57,6 +57,7 @@ p {
     color: #333;
     font-size: 30px;
     font-weight: 400;
+    font-family: 'Oswald', sans-serif;
 }
 .section_title h2:after {
     content: "";
@@ -67,6 +68,7 @@ p {
     background-color: #70abaf;
     left: 50%;
     margin-left: -30px;
+    font-family: 'Oswald', sans-serif;
 }
 .section_title p {
     text-align: left;
@@ -75,6 +77,7 @@ p {
     font-size: 18px;
     line-height: 28px;
     font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
 }
 .parallax {
     background-attachment: fixed !important;
@@ -90,6 +93,7 @@ p {
 .header h2 {
     height: 0px;
     margin: 0px;
+    font-family: 'Oswald', sans-serif;
 }
 .navbar {
     margin-top: -100px
@@ -283,27 +287,55 @@ tuor:visited {
 }
 .inner_about_title {
     padding-bottom: 50px;
+    font-family: 'Oswald', sans-serif;
 }
 .inner_about_title h2 {
     text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    color: #333;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    /*text-transform: uppercase;
     font-weight: 800;
     font-size: 30px;
     line-height: 37px;
     position: relative;
+    font-family: 'Oswald', sans-serif;*/
 }
 .inner_about_title h2:after {
     content: "";
+    position: absolute;
+    bottom: -20px;
+    width: 60px;
+    height: 1px;
+    background-color: #70abaf;
+    left: 50%;
+    margin-left: -30px;
+    font-family: 'Oswald', sans-serif;
+
+    /*content: "";
     position: absolute;
     bottom: -12px;
     left: 0;
     width: 70px;
     background: #70abaf;
     height: 1px;
+    font-family: 'Oswald', sans-serif;*/
 }
 .inner_about_title p {
-    font-size: 19px;
+    /*font-size: 19px;
     line-height: 24px;
     margin-top: 40px;
+    font-family: 'Oxygen', sans-serif;*/
+    text-align: left;
+    margin-top: 45px;
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
 }
 .inner_about_desc {} .single_about_area {
     position: relative;
@@ -373,11 +405,18 @@ tuor:visited {
     height: 1px;
 }
 .video_title p {
-    font-size: 18px;
+    /*font-size: 18px;
     line-height: 28px;
     margin-top: 40px;
     color: #333;
+    font-weight: 300;*/
+    text-align: left;
+    margin-top: 45px;
+    color: #333;
+    font-size: 18px;
+    line-height: 28px;
     font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
 }
 .btn-video,
 .btn-video:active,
@@ -514,10 +553,17 @@ div.carousel-inner .item img {
     color: #70abaf;
 }
 .right_single_feature p {
+    text-align: left;
+    margin-top: 45px;
     color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
+    /*color: #333;
     font-size: 16px;
     font-weight: 300;
-    line-height: 25px;
+    line-height: 25px;*/
 }
 /*left feature*/
 
@@ -549,10 +595,17 @@ div.carousel-inner .item img {
     color: #70abaf;
 }
 .left_single_feature p {
+    text-align: left;
+    margin-top: 45px;
     color: #333;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: 'Oxygen', sans-serif;
+    /*color: #333;
     font-size: 16px;
     font-weight: 300;
-    line-height: 25px;
+    line-height: 25px;*/
 }
 .right_no_padding {
     padding-left: 15px;
@@ -681,7 +734,7 @@ div.carousel-inner .item img {
     margin-top: 0px;
     font-weight: 300;
     text-transform: uppercase;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 /*---------------------------------------
    SECTION DOWNLOAD              
@@ -1111,10 +1164,10 @@ select:-webkit-autofill {
    SLIDESHOW              
 -----------------------------------------*/
 
-* {box-sizing: border-box}
+/* {box-sizing: border-box}
 body {font-family: 'Oxygen', sans-serif; margin:0}
 .mySlides {display: none}
-img {vertical-align: middle;}
+img {vertical-align: middle;}*/
 
 /* Slideshow container */
 .slideshow-container {
@@ -1124,7 +1177,7 @@ img {vertical-align: middle;}
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.mySlides prev, .mySlides next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -1132,25 +1185,25 @@ img {vertical-align: middle;}
   padding: 16px;
   margin-top: -22px;
   color: white;
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
 
 /* Position the "next button" to the right */
-.next {
+.mySlides next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
+.mySlides prev:hover, ..mySlides next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
 /* Caption text */
-.text {
+..mySlides text {
   font-size: 20px;
   padding: 8px 12px;
   position: relative;
@@ -1160,7 +1213,7 @@ img {vertical-align: middle;}
 }
 
 /* The dots/bullets/indicators */
-.dot {
+.mySlides dot {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -1171,12 +1224,12 @@ img {vertical-align: middle;}
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.mySlides active, .dot:hover {
   background-color: #717171;
 }
 
 /* Fading animation */
-.fade {
+.mySlides fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
