@@ -101,6 +101,11 @@ p {
     font-weight: 300;
     font-family: 'Oxygen', sans-serif;
 }
+
+.section_title p a {
+    text-decoration: none;
+    color: #c10001;
+}
 .parallax {
     background-attachment: fixed !important;
     background-position: center center;
@@ -447,11 +452,12 @@ tuor:visited {
 .btn-video:active,
 .btn-video:focus,
 .btn-video:visited {
-    background: transparent;
-    border: 1px solid #929292;
-    color: #686868;
+    background: #70abaf;
+    border: 1px solid #70abaf;
+    color: #fff;
     border-radius: 3px;
-    padding: 12px 35px;
+    padding: 15px 35px;
+    font-size: 25px;
     text-transform: uppercase;
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
@@ -1221,10 +1227,9 @@ select:-webkit-autofill {
 -----------------------------------------*/
 
 /* {box-sizing: border-box}
-body {font-family: 'Oxygen', sans-serif; margin:0}*/
+body {font-family: 'Oxygen', sans-serif; margin:0}
 .mySlides {display: none}
-
-.mySlides img {vertical-align: middle;}
+img {vertical-align: middle;}*/
 
 /* Slideshow container */
 .slideshow-container {
