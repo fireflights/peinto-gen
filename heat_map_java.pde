@@ -2,7 +2,7 @@
 
 
 
-boolean is_3D = true;
+boolean is_3D = false;
 
 String[] diseases, parts, genes;
 float[][] exprs;
@@ -22,8 +22,7 @@ BufferedReader reader;
 void setup () {
     size(1200, 800, P3D);
     
-    back_buffer = createGraphics( 1200, 800, P3D );
-    
+    back_buffer = createGraphics(1200, 800, P3D);
     
     // LOAD FONTS
     header_font = createFont("./assets/fonts/Oswald-Regular.ttf", 48);
@@ -101,7 +100,7 @@ void initialize() {
     cam_pos = new float[3];
     cam_pos[0] = 585;
     cam_pos[1] = 400;
-    cam_pos[2] = 2500;
+    cam_pos[2] = 2200;
     cam_up = new float[3];
     cam_up[0] = 0;
     cam_up[1] = 1;
@@ -267,28 +266,41 @@ void draw() {
       
       fill(0);
       String disease = diseases[selected_j];
-      String part = parts[selected_j];
+      String part = parts[selected_j].trim();
       String gene_id = genes[selected_j].split("/")[0];
       String gene_name = genes[selected_j].split("/")[1];
       float fc = exprs[selected_i][selected_j];
       
       //text(disease, 0, 0, 20);
       
-      textFont(header_font);
+      // text("Part: ", rect_x + 10, rect_y + 12, 10);
+      // text("Disease: ", rect_x + 10, rect_y + 12 + 20,10);
+      // text("Gene ID: ", rect_x + 10, rect_y + 12 + 20 + 20, 10);
+      // text("Gene Name: ", rect_x + 10, rect_y + 32 + 20 + 20, 10);
+      // text("Fold Change: ", rect_x + 10, rect_y + 52 + 20 + 20, 10);
+      // // textFont(text_font_2);
+      // textSize(16);
+      // text(part, rect_x + 112, rect_y + 12, 10);
+      // text(disease, rect_x + 112, rect_y + 12 + 20, 10);
+      // text(gene_id, rect_x + 112, rect_y + 12 + 20 + 20, 10);
+      // text(gene_name, rect_x + 112, rect_y + 32 + 20 + 20, 10);
+      // text(fc, rect_x + 112, rect_y + 52 + 20 + 20, 10);
+
+      // textFont(header_font);
       textSize(16);
-      text("Part: ", 10, 10, 10 );
-      text("Disease: ", 10, 30, 10);
-      text("Gene ID: ", 10, 50, 10 );
-      text("Gene Name: ", 10, 70, 10 );
-      text("Fold Change: ", 10, 90, 10);
+      text("Part: ", 10, 12, 10 );
+      text("Disease: ", 10, 32, 10);
+      text("Gene ID: ", 10, 52, 10 );
+      text("Gene Name: ", 10, 72, 10 );
+      text("Fold Change: ", 10, 92, 10);
       
-      textFont(text_font_2);
+      // textFont(text_font_2);
       textSize(16);
-      text(part, 90, 10, 10);
-      text(disease, 90, 30, 10);
-      text(gene_id, 90, 50, 10);
-      text(gene_name, 90, 70, 10);
-      text(fc, 90, 90, 10);
+      text(part, 112, 12, 10);
+      text(disease, 112, 32, 10);
+      text(gene_id, 112, 52, 10);
+      text(gene_name, 112, 72, 10);
+      text(fc, 112, 92, 10);
       
       popMatrix(); 
       
@@ -377,14 +389,13 @@ void draw() {
   
   ////mode text
   fill(0);
-  textFont(header_font);
+  // textFont(header_font);
   textSize(20);
-  text("Mode", 10, -20, 20);
-  textFont(text_font
-  );
-  textSize(18);
-  text("2D", 30, 19, 30);
-  text("3D", 30, 49, 30);
+  text("Mode", 2, -12, 20);
+  // textFont(text_font);
+  // textSize(20);
+  text("2D", 25, 19, 30);
+  text("3D", 25, 49, 30);
   
   //text(selected_i, 60, 10, 30);
   //text(selected_j, 60, 50, 30);
@@ -393,23 +404,24 @@ void draw() {
   translate(188, -34, 0);
   rect(0, -2, 70, 32);
   
-  textFont(header_font);
-  textSize(15);
-  text("Reset", 0, 25, 30);
+  // textFont(header_font);
+  textSize(20);
+  text("Reset", -3, 24, 30);
   popMatrix();
   
   pushMatrix();
   noFill();
-  translate(950, 725, 0);
+  translate(950, 740, 0);
   rect(-2, 0, 70, 32);
   rect(121, 0, 70, 32);
-  //#reset text
-  textFont(header_font);
-  textSize(28);
-  text("All", 18, 8, 30);
-  text("None", 125, 8, 30);
+  //reset text
+  // textFont(header_font);
+  textSize(20);
+  text("All", 16.5, 4, 30);
+  text("None", 122, 4, 30);
   popMatrix();
-      fill(255);
+
+  fill(255);
   noStroke();
   
   pushMatrix();
@@ -505,16 +517,16 @@ void mouseDragged() {
 void mousePressed() {
   if (mouseX > 920 && mouseX < 940) {
     if(mouseY > 60 && mouseY < 80) {
-      is_3D = false; 
+      is_3D = false;
      }
     if(mouseY > 90 && mouseY < 110) {
       is_3D = true; 
     }
   }
  
-  if(mouseX > 1120 && mouseX < 1190) {
+  if(mouseX > 1108 && mouseX < 1178) {
    
-    if(mouseY > 25 && mouseY < 57) {
+    if(mouseY > 24 && mouseY < 56) {
    
       initialize(); 
     }
@@ -559,8 +571,8 @@ void mousePressed() {
     }
   }
   
-  if(mouseY > 725 && mouseY < 757) {  
-    if(mouseX > 948 && mouseX < 1020) {
+  if(mouseY > 740 && mouseY < 772) {  
+    if(mouseX > 948 && mouseX < 1018) {
       is_bladder = is_blood = is_kidney = is_liver = is_lung = is_ovary = is_pancreas = is_prostate = is_stomach = is_thyroid = is_uterus = true;
     }
     if(mouseX > 1071 && mouseX < 1141) {
@@ -601,7 +613,7 @@ void display_gene_2D(float x, float y) {
       int box_num = box_row * exprs[0].length + box_col;
       
       String disease = diseases[box_col];
-      String part = parts[box_col];
+      String part = parts[box_col].trim();
       String gene_id = genes[box_row].split("/")[0];
       String gene_name = genes[box_row].split("/")[1];
       float fc = exprs[box_row][box_col];
@@ -613,30 +625,30 @@ void display_gene_2D(float x, float y) {
       int rect_x, rect_y;
       rect_x = 0;
       rect_y = 0;
-      if(mouseX > 625) {
-          rect_x = -275;
+      if(mouseX >= 545) {
+          rect_x = -355;
       }
-      if(mouseY < 61) {
-          rect_y = 61;
+      if(mouseY >= 694) {
+          rect_y = -106;
       }
       
       
-      rect(rect_x, rect_y, 275, 102);
+      rect(rect_x, rect_y, 355, 106);
       fill(0);
-      textFont(header_font);
+      // textFont(header_font);
       textSize(16);
-      text("Part: ", rect_x + 10, rect_y + 10, 10);
-      text("Disease: ", rect_x + 10, rect_y + 10 + 20,10);
-      text("Gene ID: ", rect_x + 10, rect_y + 10 + 20 + 20, 10);
-      text("Gene Name: ", rect_x + 10, rect_y + 30 + 20 + 20, 10);
-      text("Fold Change: ", rect_x + 10, rect_y + 50 + 20 + 20, 10);
-      textFont(text_font_2);
+      text("Part: ", rect_x + 10, rect_y + 12, 10);
+      text("Disease: ", rect_x + 10, rect_y + 12 + 20,10);
+      text("Gene ID: ", rect_x + 10, rect_y + 12 + 20 + 20, 10);
+      text("Gene Name: ", rect_x + 10, rect_y + 32 + 20 + 20, 10);
+      text("Fold Change: ", rect_x + 10, rect_y + 52 + 20 + 20, 10);
+      // textFont(text_font_2);
       textSize(16);
-      text(part, rect_x + 90, rect_y + 10, 10);
-      text(disease, rect_x + 90, rect_y + 10 + 20, 10);
-      text(gene_id, rect_x + 90, rect_y + 10 + 20 + 20, 10);
-      text(gene_name, rect_x + 90, rect_y + 30 + 20 + 20, 10);
-      text(fc, rect_x + 90, rect_y + 50 + 20 + 20, 10);
+      text(part, rect_x + 112, rect_y + 12, 10);
+      text(disease, rect_x + 112, rect_y + 12 + 20, 10);
+      text(gene_id, rect_x + 112, rect_y + 12 + 20 + 20, 10);
+      text(gene_name, rect_x + 112, rect_y + 32 + 20 + 20, 10);
+      text(fc, rect_x + 112, rect_y + 52 + 20 + 20, 10);
       popMatrix();
     }
   } 
@@ -670,11 +682,11 @@ void apply_filter() {
     }
     if(is_kidney) {
         kidney = kidney_c;
-        alphas[1] = alphas[4] = 255;
+        alphas[1] = 255;
     }
     if(is_liver) {
         liver = liver_c;
-        alphas[2] = alphas[6] = 255;
+        alphas[2] = 255;
     }
     if(is_lung) {
         lung = lung_c;

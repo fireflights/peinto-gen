@@ -7,6 +7,8 @@ PFont header_font, text_font, text_font_2;
 float[][] centers, genes_g, genes_h;
 Intensity[] intensities;
 Node[] nodes;
+int start_millis;
+
 void setup(){
     size(1200, 800, P2D);
     
@@ -27,38 +29,101 @@ void setup(){
     genes_g = load_arrays_from_file("./data/mcf_g.csv");
     genes_h = load_arrays_from_file("./data/mcf_h.csv");
     
-    int n_genes = genes_a.length;
-    centers = new float[n_genes][2];
-    float[] main_circ_center = {(width - 100 - diameter)/2, height/2};
-    float main_circ_radius = (height - 100 - diameter)/2;
-    int zero_counter = 0;
-    for(int i = 0; i < n_genes; i++) {
-     centers[i][0] = main_circ_center[0] + main_circ_radius*cos(2*PI/n_genes*i); 
-     centers[i][1] = main_circ_center[1] + main_circ_radius*sin(2*PI/n_genes*i);  
-    
-     //genes_g[i][i] = 0; 
-     //genes_h[i][i] = 0; 
-     
-     if(sum(genes_g[i]) == 0) {
-       genes_a[i] = 0;
-       zero_counter += 1;
-     }
-     if(sum(genes_h[i]) == 0) {
-       genes_b[i] = 0;
-       zero_counter += 1;
-     }
+    for(int i = 0; i < genes.length; i++) {
+      genes[i] = genes[i].substring(1, genes[i].length - 1);
     }
+
+    int n_genes = genes_a.length;
+    // centers = new float[n_genes][2];
+    // float[] main_circ_center = {(width - 100 - diameter)/2, height/2};
+    // float main_circ_radius = (height - 100 - diameter)/2;
+    // int zero_counter = 0;
+    // for(int i = 0; i < n_genes; i++) {
+    //   centers[i][0] = main_circ_center[0] + main_circ_radius*cos(2*PI/n_genes*i); 
+    //   centers[i][1] = main_circ_center[1] + main_circ_radius*sin(2*PI/n_genes*i);  
+
+    //   genes_g[i][i] = 0;
+    //   genes_h[i][i] = 0;
+
+    //   if(sum_abs(genes_g[i]) == 0) {
+    //    genes_a[i] = 0;
+    //    zero_counter += 1;
+    //   }
+    //   if(sum_abs(genes_h[i]) == 0) {
+    //    genes_b[i] = 0;
+    //    zero_counter += 1;
+    //   }
+    // }
     
     intensities = new Intensity[n_genes*2];
     for(int i = 0; i < n_genes; i++) {
      Intensity intensity = new Intensity(i, "g", genes_a[i]);
-     intensities[i] = intensity; 
+     intensities[i] = intensity;
     }
     for(int i = n_genes; i < n_genes*2; i++) {
      Intensity intensity = new Intensity(i-n_genes, "h", genes_b[i-n_genes]);
      intensities[i] = intensity; 
     }
+
+    intensities = bubble_sort_and_trim_intensities(intensities, 2 * n_genes);
+
+    // n_complexity_levels = genes_a.length + genes_b.length - zero_counter;
+    // intensities = bubble_sort_and_trim_intensities(intensities, n_complexity_levels);
+
+    // This part takes out two-way connections. This is to make sure that the network is sparse and that complex feedback mechanisms are not considered.
+    // (These may be important, but for the website's purpose and the visualization's current state, it is intractable.)
+    for(int i = 0; i < intensities.length; i++) {
+      Intensity intensity = intensities[i];
+      int intensity_num = intensity.i;
+      if(intensity.type == "g") {
+        for(int j = 0; j < n_genes; j++) {
+          if(genes_g[intensity_num][j] != 0) {
+            genes_g[j][intensity_num] = 0;
+            genes_h[j][intensity_num] = 0;
+          }
+        }
+      }
+      else {
+        for(int j = 0; j < n_genes; j++) {
+          if(genes_h[intensity_num][j] != 0) {
+            genes_g[j][intensity_num] = 0;
+            genes_h[j][intensity_num] = 0;
+          }
+        }
+      }
+    }
+
+    centers = new float[n_genes][2];
+    float[] main_circ_center = {(width - 100 - diameter)/2, height/2};
+    float main_circ_radius = (height - 100 - diameter)/2;
+    int zero_counter = 0;
+    for(int i = 0; i < n_genes; i++) {
+      centers[i][0] = main_circ_center[0] + main_circ_radius*cos(2*PI/n_genes*i); 
+      centers[i][1] = main_circ_center[1] + main_circ_radius*sin(2*PI/n_genes*i);  
+
+      genes_g[i][i] = 0;
+      genes_h[i][i] = 0;
+
+      if(sum_abs(genes_g[i]) == 0) {
+       genes_a[i] = 0;
+       zero_counter += 1;
+      }
+      if(sum_abs(genes_h[i]) == 0) {
+       genes_b[i] = 0;
+       zero_counter += 1;
+      }
+    }
+
     n_complexity_levels = genes_a.length + genes_b.length - zero_counter;
+    
+    for(int i = 0; i < n_genes; i++) {
+     Intensity intensity = new Intensity(i, "g", genes_a[i]);
+     intensities[i] = intensity;
+    }
+    for(int i = n_genes; i < n_genes*2; i++) {
+     Intensity intensity = new Intensity(i-n_genes, "h", genes_b[i-n_genes]);
+     intensities[i] = intensity; 
+    }
     intensities = bubble_sort_and_trim_intensities(intensities, n_complexity_levels);
     
     nodes = new Node[n_genes];
@@ -69,13 +134,13 @@ void setup(){
     complexities = new int[n_complexity_levels + 1];
     complexities[0] = 1;
     complexity = 0;
-    
+    start_millis = millis();
 }
 
 void draw() {
   
   background(255);
-  
+
   for(int i = 0; i < nodes.length; i++) {
     nodes[i].state = "inactive";
   }
@@ -83,7 +148,7 @@ void draw() {
   pushMatrix();
   scale(zoom);
   
-  for(int i = 0; i < complexity; i++) {
+  for(int i = 0; i < complexity - 1; i++) {
     stroke(0);
     Intensity intensity = intensities[i];
     
@@ -93,9 +158,50 @@ void draw() {
         node.state = "done";
       }
     }
-    //text(complexity, 100, 100);
+
     Node cur_node = nodes[intensity.i];
     
+    int[] cur_incoming_nodes;
+    if(intensity.type == "g") {
+      cur_incoming_nodes = cur_node.incoming_g();
+    }
+    else {
+      cur_incoming_nodes = cur_node.incoming_h();
+    }
+
+    for(int j = 0; j < cur_incoming_nodes.length; j++) {
+      int node_num = cur_incoming_nodes[j];
+      if(node_num != 0) {
+        nodes[node_num].state = "done";
+      }
+    }
+
+    cur_node.state = "done";
+    strokeWeight(3);
+    if(intensity.type == "g") {
+      stroke(112, 171, 175); 
+    }
+    else {
+      stroke(193, 0, 1);
+    }
+    cur_node.draw_edges(radius, nodes, cur_incoming_nodes, false, intensity.type);
+  }
+
+  for(int j = 0; j < nodes.length; j++) {
+    nodes[j].draw_node(diameter);
+  }
+
+  if(complexity>0) {
+    Intensity intensity = intensities[i];
+    
+    for(int j = 0; j < nodes.length; j++) {
+      Node node = nodes[j];
+      if(node.state == "active") {
+        node.state = "done";
+      }
+    }
+
+    Node cur_node = nodes[intensity.i];
     int[] cur_incoming_nodes;
     if(intensity.type == "g") {
       cur_incoming_nodes = cur_node.incoming_g();
@@ -109,23 +215,38 @@ void draw() {
         nodes[node_num].state = "done";
       }
     }
-    
-    
-  cur_node.state = "active";
-    strokeWeight(3);
-    if(intensity.type == "g") {
-      stroke(112, 171, 175); 
+
+    cur_node.state = "active";
+
+    if(millis() - start_millis > 500) {
+      cur_node.draw_node(diameter);
     }
-    else {
-      stroke(193, 0, 1);
+
+    if(millis() - start_millis > 1000) {
+      for(int j = 0; j < nodes.length; j++) {
+        if(j != intensity.i) {
+          nodes[j].draw_node(diameter);
+        }
+      }
     }
-    cur_node.draw_edges(radius, nodes, cur_incoming_nodes);
     
+    if(millis() - start_millis > 1500) {
+      strokeWeight(3);
+      if(intensity.type == "g") {
+        stroke(112, 171, 175); 
+      }
+      else {
+        stroke(193, 0, 1);
+      }
+      cur_node.draw_edges(radius, nodes, cur_incoming_nodes, true, intensity.type);
+    }
     
   }
-    for(int j = 0; j < nodes.length; j++) {
-      nodes[j].draw_node(diameter);
-    }
+
+  // Node cur_node = nodes[intensity.i];
+  
+
+
   popMatrix();
   
   
@@ -178,7 +299,7 @@ void draw() {
   }
   popMatrix();
   
-  display_node(mouseX, mouseY, nodes, centers, radius);
+  display_node(mouseX, mouseY);
   
 }
 
@@ -203,10 +324,10 @@ Intensity[] bubble_sort_and_trim_intensities(Intensity[] arr, int n_complexity_l
   return ret;
 }
 
-float sum(float[] array) {
-  int ret = 0;
+float sum_abs(float[] array) {
+  float ret = 0;
   for(int i = 0; i < array.length; i++) {
-   ret += array[i]; 
+   ret += abs(array[i]);
   }
   return ret;
   
@@ -240,7 +361,7 @@ float[][] load_arrays_from_file(String filename) {
   
   for(int i = 1; i < lines.length; i++) {
     String[] values = lines[i].split(",");
-    for(int j = 1; j <= values.length; j++) {
+    for(int j = 1; j < values.length; j++) {
      ret[i-1][j-1] = float(values[j]);
     }
   }
@@ -266,11 +387,12 @@ void mousePressed() {
     complexities = new int[n_complexity_levels + 1];
     complexities[int((580 + box_height - mouseY) / box_height)] = 1;
     complexity = int((580 + box_height - mouseY) / box_height);
+    start_millis = millis();
   }
 }
 
 
-void draw_arrow(float radius, float[] center_circ1, float[] center_circ2) { 
+void draw_arrow(float radius, float[] center_circ1, float[] center_circ2, boolean grow_line, String type) { 
   float x1 = center_circ1[0];
   float y1 = center_circ1[1];
   float x2 = center_circ2[0];
@@ -279,43 +401,99 @@ void draw_arrow(float radius, float[] center_circ1, float[] center_circ2) {
   
   float new_x1, new_x2, new_y1, new_y2;
   if(x1 < x2) {
-    new_x1 = x1 + radius / dist_bet_circs * (x2 - x1);
-    new_x2 = x2 - radius / dist_bet_circs * (x2 - x1);
+    new_x1 = x1 + radius / dist_bet_circs * (x2 - x1) * 1.2;
+    new_x2 = x2 - radius / dist_bet_circs * (x2 - x1) * 1.2;
   }
   else {
-    new_x1 = x1 - radius / dist_bet_circs * (x1 - x2);
-    new_x2 = x2 + radius / dist_bet_circs * (x1 - x2);
+    new_x1 = x1 - radius / dist_bet_circs * (x1 - x2) * 1.2;
+    new_x2 = x2 + radius / dist_bet_circs * (x1 - x2) * 1.2;
   }
   if(y1 > y2) {
-    new_y1 = y1 + radius / dist_bet_circs * (y2 - y1);
-    new_y2 = y2 - radius / dist_bet_circs * (y2 - y1);
+    new_y1 = y1 + radius / dist_bet_circs * (y2 - y1) * 1.2;
+    new_y2 = y2 - radius / dist_bet_circs * (y2 - y1) * 1.2;
   }
   else {
-    new_y1 = y1 - radius / dist_bet_circs * (y1 - y2);
-    new_y2 = y2 + radius / dist_bet_circs * (y1 - y2);
+    new_y1 = y1 - radius / dist_bet_circs * (y1 - y2) * 1.2;
+    new_y2 = y2 + radius / dist_bet_circs * (y1 - y2) * 1.2;
   }
   
-  line(new_x1, new_y1, new_x2, new_y2);
-  
-  pushMatrix();
-  translate(new_x2, new_y2);
-  float theta = acos((new_x1 - new_x2)/dist(new_x1, new_y1, new_x2, new_y2));
-  if(new_y2 > new_y1) {
-    rotate(-theta - PI / 4);
-    line(0, 0, 10, 0);
-    rotate(PI / 2);
-    line(0, 0, 10, 0);
+  if(grow_line){
+    int grow_time = 1000; 
+    interpolate = (float)(millis()-start_millis-1500)/grow_time;
+    if(interpolate < 1) {
+      line(new_x1, new_y1, (int)( (1-interpolate)*new_x1 + interpolate*new_x2),
+        (int)( (1-interpolate)*new_y1 + interpolate*new_y2 ) );
+    }
+    else {
+      line(new_x1, new_y1, new_x2, new_y2)
+      pushMatrix();
+      translate(new_x2, new_y2);
+      float theta = acos((new_x1 - new_x2)/dist(new_x1, new_y1, new_x2, new_y2));
+      if(type == "g") {
+        if(new_y2 > new_y1) {
+          rotate(-theta - PI / 4);
+          line(0, 0, 10, 0);
+          rotate(PI / 2);
+          line(0, 0, 10, 0);
+        }
+        else {
+          rotate(theta + PI / 4);
+          line(0, 0, 10, 0);
+          rotate(-PI / 2);
+          line(0, 0, 10, 0);
+        }
+      }
+      else {
+        if(new_y2 > new_y1) {
+          rotate(-theta - PI / 2);
+          line(-10, 0, 10, 0);
+        }
+        else {
+          rotate(theta + PI / 2);
+          line(-10, 0, 10, 0);
+        }
+      }
+      popMatrix();
+    }
   }
   else {
-    rotate(theta + PI / 4);
-    line(0, 0, 10, 0);
-    rotate(-PI / 2);
-    line(0, 0, 10, 0);
+      line(new_x1, new_y1, new_x2, new_y2 )
+      pushMatrix();
+      translate(new_x2, new_y2);
+      float theta = acos((new_x1 - new_x2)/dist(new_x1, new_y1, new_x2, new_y2));
+      if(type == "g") {
+        if(new_y2 > new_y1) {
+          rotate(-theta - PI / 4);
+          line(0, 0, 10, 0);
+          rotate(PI / 2);
+          line(0, 0, 10, 0);
+        }
+        else {
+          rotate(theta + PI / 4);
+          line(0, 0, 10, 0);
+          rotate(-PI / 2);
+          line(0, 0, 10, 0);
+        }
+      }
+      else {
+        if(new_y2 > new_y1) {
+          rotate(-theta - PI / 2);
+          line(-10, 0, 10, 0);
+        }
+        else {
+          rotate(theta + PI / 2);
+          line(-10, 0, 10, 0);
+        }
+      }
+      popMatrix();
   }
-  popMatrix();
+
+  
+  
+ 
 }
 
-class Intensity implements Comparable<Intensity>{
+class Intensity{
    int i;
    String type;
    float value;
@@ -324,10 +502,6 @@ class Intensity implements Comparable<Intensity>{
     this.i = i;
     this.type = type;
     this.value = value;
-   }
-   
-   int compareTo(Intensity a) {
-     return int(a.value - this.value);
    }
 }
 
@@ -378,24 +552,24 @@ class Node {
      if(this.state == "active") {
         stroke(0); 
         fill(42, 81, 93); // 42, 81, 93
+        ellipse(this.center[0] + start_pos_x, this.center[1] + start_pos_y, diameter, diameter);
      }
      else if(this.state == "done") {
         stroke(0);
-        fill(230, 236, 246);
+        fill(239, 246, 255);
+        ellipse(this.center[0] + start_pos_x, this.center[1] + start_pos_y, diameter, diameter);
      }
-     else {
-        noStroke();
-        fill(255, 255, 255);
-     }
-     ellipse(this.center[0] + start_pos_x, this.center[1] + start_pos_y, diameter, diameter);
+     
   }
   
-  public void draw_edges(float radius, Node[] nodes, int[] incoming_nodes) {
+  public void draw_edges(float radius, Node[] nodes, int[] incoming_nodes, boolean grow_line, String type) {
     for(int i=0; i < incoming_nodes.length; i++) {
-     int node = incoming_nodes[i];
-     float[] updated_center1 = {nodes[node].center[0] + start_pos_x, nodes[node].center[1] + start_pos_y};
-     float[] updated_center2 = {this.center[0] + start_pos_x, this.center[1] + start_pos_y};
-     draw_arrow(radius, updated_center1, updated_center2); 
+      if(incoming_nodes[i] != 0) {
+        int node = incoming_nodes[i];
+        float[] updated_center1 = {nodes[node].center[0] + start_pos_x, nodes[node].center[1] + start_pos_y};
+        float[] updated_center2 = {this.center[0] + start_pos_x, this.center[1] + start_pos_y};
+        draw_arrow(radius, updated_center1, updated_center2, grow_line, type); 
+      }
     }
   }
 }
@@ -430,7 +604,7 @@ void display_node(float x, float y) {
         translate(5, 33);
         textFont(text_font);
         textSize(22);
-        text(node.name, 0, 0);
+        text(node.name, 80 - textWidth(node.name) / 2, -4);
         popMatrix();
      }
      

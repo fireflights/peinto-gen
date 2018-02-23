@@ -1,0 +1,16 @@
+num_med_nodes num_reg_nodes
+m_node1 x1 y1
+...
+m_noden xn yn
+r_node1 v1 x1 y1
+...
+r_noden vn xn yn
+
+num_connections
+node1 node2 v1
+...
+noden nodem vn
+
+activation_drug_price
+inhibition_drug_price
+budget
